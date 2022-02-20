@@ -228,13 +228,32 @@ function  applyPromotionsCart()  {
 }
 
 // // Ejercicio 7
-// function addToCart(id)  {
+function addToCart(id)  {
     
    
     // Refactoriza el código anterior para simplificarlo
     // 1. Vaya a la matriz de productos para obtener el artículo para agregar al carrito
     // 2. Agregue el producto encontrado a la matriz del carrito o actualice su cantidad en caso de que se haya agregado anteriormente.
-// }
+
+    for (let i = 0; i < productos.length; i++) {
+        if (id == i + 1) {
+            if (!carrito.includes(productos[i])) {
+                carrito.push(productos[i])
+                carrito[carrito.length - 1].cantidad = 1
+            }
+            else {
+                for (let j = 0; j < carrito.length; j++) {
+                    if (carrito[j].nombre == productos[i].nombre) {
+                        carrito[j].cantidad += 1
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    console.log(carrito);
+}
+
 // // Ejercicio 8
 // function  removeFromCart ( id )  {
 //     // 1. Vaya a la matriz de productos para obtener el artículo para agregar al carrito
