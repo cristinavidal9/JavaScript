@@ -82,7 +82,7 @@ let  totales  =  0 ;
 // Ejercicio 1
 
 // console.log(cartList[i]);
-function  addToCartList(id)  {
+function  buy(id)  {
     for(let i = 0; i < productos.length ; i++){
         // console.log(productos[i])
         if(id === i + 1) {
