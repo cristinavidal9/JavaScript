@@ -1,69 +1,65 @@
-const buttons = document.querySelectorAll('button.btn-primary')
-
-// Si tiene tiempo, puede mover esta variable "productos" a un archivo json y cargar los datos en este js. Se verá más profesional.
-let  productos  =  [
+var products = [
     {
-        id: 1 ,
-        nombre : 'aceite de cocina' ,
-        precio : 10.5 ,
-        tipo : 'comestibles'
-    } ,
+        id: 1,
+        name: 'cooking oil',
+        price: 10.5,
+        type: 'grocery'
+    },
     {
-        id: 2 ,
-        nombre : 'Pasta' ,
-        precio : 6.25 ,
-        tipo : 'comestibles'
-    } ,
+        id: 2,
+        name: 'Pasta',
+        price: 6.25,
+        type: 'grocery'
+    },
     {
-        id: 3 ,
-        nombre : 'Mezcla instantánea de cupcakes' ,
-        precio : 5 ,
-        tipo : 'comestibles'
-    } ,
+        id: 3,
+        name: 'Instant cupcake mixture',
+        price: 5,
+        type: 'grocery'
+    },
     {
-        id: 4 ,
-        nombre : 'Todo en uno' ,
-        precio : 260 ,
-        tipo : 'belleza'
-    } ,
+        id: 4,
+        name: 'All-in-one',
+        price: 260,
+        type: 'beauty'
+    },
     {
-        id: 5 ,
-        nombre : 'Kit de maquillaje Zero' ,
-        precio : 20.5 ,
-        tipo : 'belleza'
-    } ,
+        id: 5,
+        name: 'Zero Make-up Kit',
+        price: 20.5,
+        type: 'beauty'
+    },
     {
-        id: 6 ,
-        nombre : 'Tintes de labios' ,
-        precio : 12.75 ,
-        tipo : 'belleza'
-    } ,
+        id: 6,
+        name: 'Lip Tints',
+        price: 12.75,
+        type: 'beauty'
+    },
     {
-        id: 7 ,
-        Nombre : 'Vestido de césped' ,
-        precio : 15 ,
-        tipo : 'ropa'
-    } ,
+        id: 7,
+        name: 'Lawn Dress',
+        price: 15,
+        type: 'clothes'
+    },
     {
-        id: 8 ,
-        nombre : 'Combo de césped y gasa' ,
-        precio : 19.99 ,
-        tipo : 'ropa'
-    } ,
+        id: 8,
+        name: 'Lawn-Chiffon Combo',
+        price: 19.99,
+        type: 'clothes'
+    },
     {
-        id: 9 ,
-        nombre : 'Vestido de niño' ,
-        precio : 9.99 ,
-        tipo : 'ropa'
+        id: 9,
+        name: 'Toddler Frock',
+        price: 9.99,
+        type: 'clothes'
     }
 ]
-// console.log(productos.length)
-// Array con productos (objetos) agregados directamente con push(). Los productos de esta matriz se repiten.
-var  cartList  =  [] ;
-console.log(cartList);
-// Versión mejorada de cartList. El carrito es una matriz de productos (objetos), pero cada uno tiene un campo de cantidad para definir su cantidad, por lo que estos productos no se repiten.
-var  carrito  =  [ ] ;
-let  subtotal  =  {
+// Array with products (objects) added directly with push(). Products in this array are repeated.
+var cartList = [];
+
+// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
+var cart = [];
+var  subtotal  =  {
     tiendaDeComestibles : {
         valor : 0 , 
         descuento : 0,
@@ -78,129 +74,40 @@ let  subtotal  =  {
         descuento : 0
     } ,
 } ;
-let  totales  =  0 ;
-// Ejercicio 1
+var total = 0;
 
-// console.log(cartList[i]);
-function  buy(id)  {
-    for(let i = 0; i < productos.length ; i++){
-        // console.log(productos[i])
-        if(id === i + 1) {
-            cartList.push(productos[i]);            
+// Exercise 1
+function buy(id) {
+    // 1. Loop for to the array products to get the item to add to cart
+    // 2. Add found product to the cartList arra
+    for (let i = 0; i < products.length; i++) {
+        if (id == i + 1) {
+            cartList.push(products[i])
         }
     }
-    console.log(cartList);
-};
-    // 1. Vaya a la matriz de productos para obtener el artículo para agregar al carrito
-    // 2. Agregue el producto encontrado a la matriz cartList
-    
-// buttons.forEach(btn => btn.addEventListener('click', () => {buy()}));
-// const addToShoppingButtons = document.querySelectorAll('.addToCart');
-//     addToShoppingButtons.forEach((addToCartButton) => {
-//     addToCartButton.addEventListener('click', () => console.log('click'));
+    console.log(cartList)
+}
 
-// Ejercicio 2
-function  cleanCart()  {
+// Exercise 2
+function cleanCart() {
     cartList = []
 }
-// Ejercicio 3
-function  calcSubtotal()  {
+// Exercise 3
+function calculateSubtotals() {
+    // 1. Create a for loop on the "cartList" array 
+    // 2. Implement inside the loop an if...else or switch...case to add the quantities of each type of product, obtaining the subtotals: subtotalGrocery, subtotalBeauty and subtotalClothes
+
     for (let i = 0; i < cartList.length; i++) {
         if (cartList.length > 0) {
-            switch (cartList[i].tipo) {
-                case 'comestibles':
-                    subtotal.tiendaDeComestibles.valor += cartList[i].precio
+            switch (cartList[i].type) {
+                case 'grocery':
+                    subtotal.grocery.value += cartList[i].price
                     break;
-                case 'belleza':
-                    subtotal.belleza.valor += cartList[i].precio
+                case 'beauty':
+                    subtotal.beauty.value += cartList[i].price
                     break;
-                case 'ropa':
-                    subtotal.ropa.valor += cartList[i].precio
-                    break;
-                default:
-                    console.log('El carro está vacío')
-            }
-        }
-    }
-    console.log('El subtotal de grocery es: ' +  subtotal.tiendaDeComestibles.valor + '\n' + 'El subtotal de beauty es: ' +  subtotal.belleza.valor + '\n' + 'El subtotal de clothes es: ' + subtotal.ropa.valor)
-}
-
-//     // 1. Crear un bucle for en la matriz "cartList"
-//     // 2. Implementar dentro del ciclo un if...else o switch...case para sumar las cantidades de cada tipo de producto, obteniendo los subtotales: subtotalGrocery, subtotalBeauty y subtotalClothes
-
-// // Ejercicio 4
-function  calcTotal()  {
-
-    for (let i = 0; i < cartList.length; i++) {
-        totales +=  cartList[i].precio 
-    }
-    
-    console.log('El total és: ' + totales + '$')
-    
-}
-
-//     // Calcular el precio total del carrito utilizando la matriz "cartList"
-// }
-// // Ejercicio 5
-function  generarCarro()  {
-    
-    for (let i = 0; i < cartList.length; i++) {
-        
-        if (!carrito.includes(cartList[i])) {
-            carrito.push(cartList[i])
-            carrito[carrito.length - 1].cantidad = 1
-        }
-        else {
-            for (let j = 0; j < carrito.length; j++) {
-                if (carrito[j].nombre == cartList[i].nombre) {
-                    carrito[j].cantidad += 1
-                    break;
-                }
-            }
-        }
-    }
-}
-    // subtotales de cada item en cart
-    for (let i = 0; i < carrito.length; i++) {
-        if (carrito.length > 0) {
-            switch (carrito[i].nombre) {
-                case 'aceite de cocina':
-                    carrito[i].subtotal = carrito[i].precio * carrito[i].cantidad;
-                    // carrito[i].subtotalWithDiscount = "";
-                    break;
-                case 'Pasta':
-                    carrito[i].subtotal = carrito[i].precio * carrito[i].cantidad;
-                    // carrito[i].subtotalWithDiscount = "";
-                    break;
-                case 'Mezcla instantánea de cupcakes':
-                   carrito[i].subtotal =carrito[i].precio *carrito[i].cantidad;
-                //    carrito[i].subtotalWithDiscount = "";
-                    break;
-
-                case 'Todo en uno':
-                   carrito[i].subtotal =carrito[i].precio *carrito[i].cantidad;
-                //    carrito[i].subtotalWithDiscount = "";
-                    break;
-                case 'Kit de maquillaje Zero':
-                   carrito[i].subtotal =carrito[i].precio *carrito[i].cantidad;
-                //    carrito[i].subtotalWithDiscount = "";
-                    break;
-                case 'Tintes de labios':
-                   carrito[i].subtotal =carrito[i].precio *carrito[i].cantidad;
-                //    carrito[i].subtotalWithDiscount = "";
-                    break;
-
-                case 'Vestido de césped':
-                   carrito[i].subtotal =carrito[i].precio *carrito[i].cantidad;
-                //    carrito[i].subtotalWithDiscount = "";
-                    break;
-                case 'Combo de césped y gasa':
-                   carrito[i].subtotal =carrito[i].precio *carrito[i].cantidad;
-                //    carrito[i].subtotalWithDiscount = "";
-                    break;
-                case 'Vestido de niño':
-                   carrito[i].subtotal =carrito[i].precio *carrito[i].cantidad;
-                //    carrito[i].subtotalWithDiscount = "";
+                case 'clothes':
+                    subtotal.clothes.value += cartList[i].price
                     break;
                 default:
                     console.log('El carro está vacío')
@@ -210,61 +117,123 @@ function  generarCarro()  {
             console.log('El carro está vacío')
         }
     }
-    // Usando la matriz "carritolist" que contiene todos los artículos en el carrito de compras,
-    // generar la matriz "carrito" que no contiene elementos repetidos, sino que cada elemento de esta matriz "carrito" muestra la cantidad de producto.
+}
+// Exercise 4
+function calculateTotal() {
+    // Calculate total price of the cart using the "cartList" array
+    for (let i = 0; i < cartList.length; i++) {
+        total +=  cartList[i].price
+    }
+    
+    console.log('El total és: ' + total + '$')
+}
 
-// // Ejercicio 6
-function  applyPromotionsCart()  {
-    // Aplicar promociones a cada artículo en la matriz "carrito"
+// Exercise 5
+function generateCart() {
+    // Using the "cartlist" array that contains all the items in the shopping cart, 
+    // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+    for (let i = 0; i < cartList.length; i++) {
 
-    for (let i = 0; i < carrito.length; i++) {
-        if ((carrito[i].nombre == 'aceite de cocina') && (carrito[i].cantidad > 3)) {
-            carrito[i].subtotalWithDiscount = (((carrito[i].precio) - 10) * carrito[i].cantidad);
+        if (!cart.includes(cartList[i])) {
+            cart.push(cartList[i])
+            cart[cart.length - 1].quantity = 1
         }
-        else if ((carrito[i].nombre == 'Mezcla instantánea de cupcakes') && (carrito[i].cantidad > 10)) {
-            carrito[i].subtotalWithDiscount = (carrito[i].precio * carrito[i].cantidad) * (2 / 3);
+        else {
+            for (let j = 0; j < cart.length; j++) {
+                if (cart[j].name == cartList[i].name) {
+                    cart[j].quantity += 1
+                    break;
+                }
+            }
+        }
+    }
+}
+for (let i = 0; i < cart.length; i++) {
+    if (cart.length > 0) {
+        switch (cart[i].name) {
+            case 'cooking oil':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+            case 'Pasta':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+            case 'Instant cupcake mixture':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+
+            case 'All-in-one':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+            case 'Zero Make-up Kit':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+            case 'Lip Tints':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+
+            case 'Lawn Dress':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+            case 'Lawn-Chiffon Combo':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+            case 'Toddler Frock':
+                cart[i].subtotal = cart[i].price * cart[i].quantity;
+                break;
+            default:
+                console.log('El carrito está vacío')
+        }
+    }
+    else {
+        console.log('El carrito está vacío')
+    }
+}
+
+// Exercise 6
+function applyPromotionsCart() {
+    // Apply promotions to each item in the array "cart"
+    for (let i = 0; i < cart.length; i++) {
+        if ((cart[i].name == 'cooking oil') && (cart[i].quantity > 3)) {
+            cart[i].subtotalWithDiscount = (((cart[i].price) - 0.5) * cart[i].quantity);
+        }
+        else if ((cart[i].name == 'Instant cupcake mixture') && (cart[i].quantity > 10)) {
+            cart[i].subtotalWithDiscount = (cart[i].price * cart[i].quantity) * (2 / 3);
         }
     }
 }
 
-// // Ejercicio 7
-function addToCart(id)  {
-    
-   
-    // Refactoriza el código anterior para simplificarlo
-    // 1. Vaya a la matriz de productos para obtener el artículo para agregar al carrito
-    // 2. Agregue el producto encontrado a la matriz del carrito o actualice su cantidad en caso de que se haya agregado anteriormente.
+// ** Nivell II **
 
-    for (let i = 0; i < productos.length; i++) {
+// Exercise 7
+function addToCart(id) {
+    // Refactor previous code in order to simplify it 
+    // 1. Loop for to the array products to get the item to add to cart
+    // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+    for (let i = 0; i < products.length; i++) {
         if (id == i + 1) {
-            if (!carrito.includes(productos[i])) {
-                carrito.push(productos[i])
-                carrito[carrito.length - 1].cantidad = 1
+            if (!cart.includes(products[i])) {
+                cart.push(products[i])
+                cart[cart.length - 1].quantity = 1
             }
             else {
-                for (let j = 0; j < carrito.length; j++) {
-                    if (carrito[j].nombre == productos[i].nombre) {
-                        carrito[j].cantidad += 1
-                        break;
+                for (let j = 0; j < cart.length; j++) {
+                    if (cart[j].name == products[i].name) {
+                        cart[j].quantity += 1
                     }
                 }
             }
         }
     }
-    console.log(carrito);
+    console.log(cart);
 }
 
-// // Ejercicio 8
-// function  removeFromCart ( id )  {
-//     // 1. Vaya a la matriz de productos para obtener el artículo para agregar al carrito
-//     // 2. Agregue el producto encontrado a la matriz cartList
-// // Ejercicio 9
-// function  removeFromCart ( id )  {
-//     // 1. Vaya a la matriz de productos para obtener el artículo para agregar al carrito
-//     // 2. Agregue el producto encontrado a la matriz cartList
-// }
-// // Ejercicio 10
-// function  imprimircarro ( )  {
-//     // Llene el modal del carrito de compras manipulando el dom del carrito de compras
-// }
-// }
+// Exercise 8
+function removeFromCart(id) {
+    // 1. Loop for to the array products to get the item to add to cart
+    // 2. Add found product to the cartList array
+}
+
+// Exercise 9
+function printCart() {
+    // Fill the shopping cart modal manipulating the shopping cart dom
+}
