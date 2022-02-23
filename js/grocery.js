@@ -60,18 +60,17 @@ var cartList = [];
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 var cart = [];
 var  subtotal  =  {
-    tiendaDeComestibles : {
-        valor : 0 , 
-        descuento : 0,
-        cantidad : 0
+    grocery : {
+        value : 0 , 
+        discount : 0
     } ,
-    belleza : {
-        valor : 0 , 
-        descuento : 0
+    beauty : {
+        value : 0 , 
+        discount : 0
     } ,
-    ropa : {
-        valor : 0 , 
-        descuento : 0
+    clothes : {
+        value : 0 , 
+        discount : 0
     } ,
 } ;
 var total = 0;
