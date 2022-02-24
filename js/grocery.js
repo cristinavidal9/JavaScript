@@ -152,32 +152,41 @@ for (let i = 0; i < cart.length; i++) {
         switch (cart[i].name) {
             case 'cooking oil':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
             case 'Pasta':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
             case 'Instant cupcake mixture':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
 
             case 'All-in-one':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
             case 'Zero Make-up Kit':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
             case 'Lip Tints':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
 
             case 'Lawn Dress':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
             case 'Lawn-Chiffon Combo':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
             case 'Toddler Frock':
                 cart[i].subtotal = cart[i].price * cart[i].quantity;
+                cart[i].subtotalWithDiscount = "";
                 break;
             default:
                 console.log('El carrito está vacío')
